@@ -56,26 +56,26 @@ Public sub fillData(ws As Worksheet, col As String, headerName As String, data A
   Application.Calculation = xlCalculationAutomatic
 End Sub
 
-Public Sub updateChartData(ws As Worksheet, chartName As String)
+Public Sub updateChartData(ws As Worksheet)
   ' Set variables
   Dim lastRow As Long
   Dim lastCol As Long
   Dim found As Range
-  Dim chart As ChartObject
   Dim range As String
-
-  ' Get the chart
-  Set chart = ws.ChartObjects(chartName)
 
   ' Get last row and last column
   lastRow = ws.Cells(ws.Rows.Count, 1).End(xlUp).Row
   lastCol = ws.Cells(1, ws.Columns.Count).End(xlToLeft).Column
-  
+
   ' Set the new range
   range = "A1:" & ColumnNumberToLetter(lastCol) & lastRow
 
-  ' Update the chart data
-  chart.Chart.SetSourceData Source:=ws.Range(range)
+  For Each chartObj In ws.ChartObjects
+    ' Update the chart data
+    chartObj.Chart.SetSourceData Source:=ws.Range(range)
+  Next chartObj
+  
+
 End Sub
 
 Function ColumnNumberToLetter(colNum As Long) As String
