@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 
 :: Define output file
-set "finalFile=final_file.csv"
+set "finalFile=output\final_file.csv"
 
 :: Create/clear the final file
 type nul > "!finalFile!"
@@ -11,7 +11,7 @@ type nul > "!finalFile!"
 set "first=1"
 
 :: Loop to process each CSV file in the directory
-for %%f in (*.csv) do (
+for %%f in (datos\*.csv) do (
   if "%%f" neq "!finalFile!" (
     if !first! equ 1 (
       :: Copy the first file completely, including the headers
