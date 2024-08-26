@@ -25,8 +25,9 @@ Public Sub copy(wsSource As Worksheet, wsDest As Worksheet, colName As String, d
 
     ' Clear the clipboard
     Application.CutCopyMode = False
+    Debug.Print "Datos copiados de " & colName & " a " & destCol
   Else
-    MsgBox "Column " & colName & " not found in the source sheet"
+    Debug.Print "Columna " & colName & " no encontrada en la hoja de origen"
   End If
 End Sub
 
@@ -68,7 +69,7 @@ Public Sub updateChartData(ws As Worksheet)
   lastCol = ws.Cells(1, ws.Columns.Count).End(xlToLeft).Column
 
   ' Set the new range
-  range = "A1:" & ColumnNumberToLetter(lastCol) & lastRow
+  range = "A1:" & columnNumberToLetter(lastCol) & lastRow
 
   For Each chartObj In ws.ChartObjects
     ' Update the chart data
@@ -78,7 +79,11 @@ Public Sub updateChartData(ws As Worksheet)
 
 End Sub
 
-Function ColumnNumberToLetter(colNum As Long) As String
+Public Sub refreshData()
+  ActiveWorkbook.RefreshAll
+End Sub
+
+Function columnNumberToLetter(colNum As Long) As String
   Dim dividend As Long
   Dim modulo As Integer
   Dim columnLetter As String
@@ -92,5 +97,5 @@ Function ColumnNumberToLetter(colNum As Long) As String
     dividend = Int((dividend - modulo) / 26)
   Wend
   
-  ColumnNumberToLetter = columnLetter
+  columnNumberToLetter = columnLetter
 End Function
