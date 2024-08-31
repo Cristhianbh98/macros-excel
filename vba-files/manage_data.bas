@@ -140,7 +140,7 @@ sub savePDF()
   End With
 
   ' Set the path and file name
-  path = ThisWorkbook.Path & "\"
+  path = ThisWorkbook.Path & "\pdf\"
 
   ' Save the worksheet as PDF
   fileName = "Informe" & Format(Now, "yyyymmdd_hhmmss") & ".pdf"
@@ -150,6 +150,6 @@ sub savePDF()
                         Filename:=path & fileName, _
                         Quality:=xlQualityStandard, _
                         IncludeDocProperties:=True, _
-                        IgnorePrintAreas:=True, _
+                        IgnorePrintAreas:=False, _
                         OpenAfterPublish:=True
 End sub

@@ -20,7 +20,8 @@ Public Sub copy(wsSource As Worksheet, wsDest As Worksheet, colName As String, d
 
     ' Set dat format
     If isDate Then
-      wsDest.Range(destCol & "1:" & destCol & lastRow).NumberFormat = "dd/mm/yyyy"
+      ' wsDest.Range(destCol & "1:" & destCol & lastRow).NumberFormat = "dd/mm/yyyy"
+      wsDest.Range(destCol & "1:" & destCol & lastRow).NumberFormat = "dd/mm"
     End If
 
     ' Clear the clipboard
