@@ -106,50 +106,15 @@ End sub
 sub savePDF()
   ' Set variables
   Dim ws As Worksheet
-  Dim path As String
-  Dim fileName As String
-  Dim imgWidth As Double
-  Dim imgHeight As Double
-
-  ' Set the image size
-  imgWidth = 594
-  imgHeight = 102
+  Dim range As String
 
   ' Set the worksheet
   Set ws = ThisWorkbook.Sheets("DASHBOARD")
 
-  ' Define the print area
-  ws.PageSetup.PrintArea = ws.Range("A:G").Address
+  ' Set the range
+  range = "A:G"
 
-  ' Set header and footer for the pdf
-  With ws.PageSetup
-    .CenterHeader = "&G"
-    .CenterHeaderPicture.Filename = ThisWorkbook.Path & "\img\header.png"
-    .centerHeaderPicture.Width = imgWidth
-    .centerHeaderPicture.Height = imgHeight
-
-    .CenterFooter = "&G"
-    .CenterFooterPicture.Filename = ThisWorkbook.Path & "\img\footer.png"
-    .centerFooterPicture.Width = imgWidth
-    .centerFooterPicture.Height = imgHeight
-
-    .TopMargin = imgHeight + Application.InchesToPoints(0.2)
-    .HeaderMargin = Application.InchesToPoints(0)
-    .BottomMargin = imgHeight + Application.InchesToPoints(0.2)
-    .FooterMargin = Application.InchesToPoints(0)
-  End With
-
-  ' Set the path and file name
-  path = ThisWorkbook.Path & "\pdf\"
-
-  ' Save the worksheet as PDF
-  fileName = "Informe" & Format(Now, "yyyymmdd_hhmmss") & ".pdf"
-
-  ' Save the PDF
-  ws.ExportAsFixedFormat Type:=xlTypePDF, _
-                        Filename:=path & fileName, _
-                        Quality:=xlQualityStandard, _
-                        IncludeDocProperties:=True, _
-                        IgnorePrintAreas:=False, _
-                        OpenAfterPublish:=True
+  ' Call subroutines
+  Debug.Print "Llamando a savePDF"
+  Call actions.savePDF(ws, range)
 End sub

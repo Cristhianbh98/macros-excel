@@ -84,6 +84,54 @@ Public Sub refreshData()
   ActiveWorkbook.RefreshAll
 End Sub
 
+Public Sub savePDF(ws As Worksheet, range As String)
+  ' Set variables
+  Dim path As String
+  Dim fileName As String
+  Dim imgWidth As Double
+  Dim imgHeight As Double
+
+  ' Set the image size
+  imgWidth = 594
+  imgHeight = 102
+
+  ' Define the print area
+  ws.PageSetup.PrintArea = ws.Range(range).Address
+
+  ' Set header and footer for the pdf
+  With ws.PageSetup
+    .CenterHeader = "&G"
+    .CenterHeaderPicture.Filename = ThisWorkbook.Path & "\img\header.png"
+    .centerHeaderPicture.Width = imgWidth
+    .centerHeaderPicture.Height = imgHeight
+
+    .CenterFooter = "&G"
+    .CenterFooterPicture.Filename = ThisWorkbook.Path & "\img\footer.png"
+    .centerFooterPicture.Width = imgWidth
+    .centerFooterPicture.Height = imgHeight
+
+    .TopMargin = imgHeight + Application.InchesToPoints(0.2)
+    .HeaderMargin = Application.InchesToPoints(0)
+    .BottomMargin = imgHeight + Application.InchesToPoints(0.2)
+    .FooterMargin = Application.InchesToPoints(0)
+  End With
+
+  ' Set the path and file name
+  path = ThisWorkbook.Path & "\pdf\"
+
+  ' Save the worksheet as PDF
+  fileName = "Informe" & Format(Now, "yyyymmdd_hhmmss") & ".pdf"
+
+  ' Save the PDF
+  ws.ExportAsFixedFormat Type:=xlTypePDF, _
+                        Filename:=path & fileName, _
+                        Quality:=xlQualityStandard, _
+                        IncludeDocProperties:=True, _
+                        IgnorePrintAreas:=False, _
+                        OpenAfterPublish:=True
+End Sub
+
+' Functions
 Function columnNumberToLetter(colNum As Long) As String
   Dim dividend As Long
   Dim modulo As Integer
@@ -99,4 +147,4 @@ Function columnNumberToLetter(colNum As Long) As String
   Wend
   
   columnNumberToLetter = columnLetter
-End Function
+End Function  
