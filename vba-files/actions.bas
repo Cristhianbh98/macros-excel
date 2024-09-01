@@ -36,10 +36,6 @@ Public sub fillData(ws As Worksheet, col As String, headerName As String, data A
   ' Set variables
   Dim lastRow As Long
 
-  ' Disable screen updating and automatic calculation
-  Application.ScreenUpdating = False
-  Application.Calculation = xlCalculationManual
-
   ' Get last row
   lastRow = ws.Cells(ws.Rows.Count, "A").End(xlUp).Row
 
@@ -50,12 +46,9 @@ Public sub fillData(ws As Worksheet, col As String, headerName As String, data A
   If lastRow > 1 Then
     ws.Range(col & "2:" & col & lastRow).Value = data
   Else
-    MsgBox "No data to fill"
+    Debug.Print "No data to fill"
   End If
 
-  ' Enable screen updating and automatic calculation
-  Application.ScreenUpdating = True
-  Application.Calculation = xlCalculationAutomatic
 End Sub
 
 Public Sub updateChartData(ws As Worksheet)

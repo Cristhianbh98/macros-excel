@@ -82,7 +82,28 @@ sub dataw4()
   Debug.Print "Datos copiados a COMPRESOR PISTON 1"
 End Sub
 
+Sub dataw5()
+  ' Set variables
+  Dim source As Worksheet, destination As Worksheet
+
+  ' Set the source and destination sheets
+  Set source = ThisWorkbook.Sheets("SOURCE")
+  Set destination = ThisWorkbook.Sheets("TEMPERATURA")
+
+  ' Call the copy function for each column
+  Call actions.copy(source, destination, "TimeStr", "A", True)
+  Call actions.copy(source, destination, "TemperaturaAceiteCT1", "B", False)
+  Call actions.copy(source, destination, "TemperaturaAguaMP", "C", False)
+  Call actions.fillData(destination, "D", "Limite de alarma de temperatura aceite", "90")
+  Call actions.fillData(destination, "E", "Limite de alarma de temperatura agua", "65")
+  Call actions.updateChartData(destination)
+End Sub
+
 sub manageData()
+  ' Disable screen updating and automatic calculation
+  Application.ScreenUpdating = False
+  Application.Calculation = xlCalculationManual
+
   ' Call subroutines
   Debug.Print "Llamando a dataw1"
   Call dataw1
@@ -92,8 +113,16 @@ sub manageData()
   Call dataw3
   Debug.Print "Llamando a dataw4"
   Call dataw4
+  Debug.Print "Llamando a dataw5"
+  Call dataw5
   
   Debug.Print "Finalizando manageData"
+
+  ' Enable screen updating and automatic calculation
+  Application.ScreenUpdating = True
+  Application.Calculation = xlCalculationAutomatic
+
+  MsgBox "Gr" & ChrW(225) & "ficos Actualizados"
 End Sub
 
 sub refreshData()
