@@ -6,16 +6,17 @@ sub dataw1()
 
   ' Set the source and destination sheets
   Set source = ThisWorkbook.Sheets("SOURCE")
-  Set destination = ThisWorkbook.Sheets("KW NOMINAL VS CARGA INDIVIDUAL")
+  Set destination = ThisWorkbook.Sheets("C.I M.P")
 
   ' Call the copy function for each column
-  Call actions.copy(source, destination, "TimeStr", "A", True)
-  Call actions.copy(source, destination, "PotenciaG1", "B", False)
-  Call actions.copy(source, destination, "PotenciaG2", "C", False)
-  Call actions.fillData(destination, "D", "KW optimo G1", "510")
+  Call actions.copy(source, destination, "FECHA", "A", True)
+  Call actions.copy(source, destination, "HORA", "B")
+  Call actions.fillData(destination, "C", "FECHA Y HORA", "=A2+B2")
+  Call actions.copy(source, destination, "CONSUMO INSTA. MP BABOR", "D")
+  Call actions.copy(source, destination, "CONSUMO INSTA. MP ESTRIBOR", "E")
   Call actions.updateChartData(destination)
 
-  Debug.Print "Datos copiados a KW NOMINAL VS CARGA INDIVIDUAL"
+  Debug.Print "Datos copiados a C.I M.P"
 End Sub
 
 sub dataw2()
@@ -24,19 +25,17 @@ sub dataw2()
 
   ' Set the source and destination sheets
   Set source = ThisWorkbook.Sheets("SOURCE")
-  Set destination = ThisWorkbook.Sheets("POTENCIA")
+  Set destination = ThisWorkbook.Sheets("C.T.M.P")
 
   ' Set antother destination sheet
-  Call actions.copy(source, destination, "TimeStr", "A", True)
-  Call actions.copy(source, destination, "PotenciaG1", "B", False)
-  Call actions.copy(source, destination, "PotenciaG2", "C", False)
-  Call actions.fillData(destination, "D", "Potencia G1+G2", "=B2+C2")
-  Call actions.fillData(destination, "E", "Nominal G1", "510")
-  Call actions.fillData(destination, "F", "Nominal G1+G2", "=E2*2")
-  Call actions.fillData(destination, "G", "Nominal G1+G2+G3", "=E2*3")
+  Call actions.copy(source, destination, "FECHA", "A", True)
+  Call actions.copy(source, destination, "HORA", "B", False, True)
+  Call actions.fillData(destination, "C", "FECHA Y HORA", "=A2+B2")
+  Call actions.copy(source, destination, "CONSUMO MP BABOR", "D")
+  Call actions.copy(source, destination, "CONSUMO MP ESTRIBOR", "E")
   Call actions.updateChartData(destination)
 
-  Debug.Print "Datos copiados a POTENCIA"
+  Debug.Print "Datos copiados a C.T.M.P"
 End Sub
 
 sub dataw3()
@@ -45,20 +44,21 @@ sub dataw3()
 
   ' Set the source and destination sheets
   Set source = ThisWorkbook.Sheets("SOURCE")
-  Set destination = ThisWorkbook.Sheets("COMPRESOR TORNILLO 1")
+  Set destination = ThisWorkbook.Sheets("C.I.M.A")
 
   ' Set antother destination sheet
-  Call actions.copy(source, destination, "TimeStr", "A", True)
-  Call actions.copy(source, destination, "AmperajeC1", "B", False)
-  Call actions.copy(source, destination, "PotenciaCT1", "C", False)
-  Call actions.copy(source, destination, "PresionAspiracionCT1", "D", False)
-  Call actions.copy(source, destination, "PresionDescargaCT1", "E", False)
-  Call actions.copy(source, destination, "TemperaturaAceiteCT1", "F", False)
-  Call actions.copy(source, destination, "TemperaturaAspiracionCT1", "G", False)
-  Call actions.copy(source, destination, "TemperaturaADescargaCT1", "H", False)
+  Call actions.copy(source, destination, "FECHA", "A", True)
+  Call actions.copy(source, destination, "HORA", "B", False, True)
+  Call actions.fillData(destination, "C", "FECHA Y HORA", "=A2+B2")
+  Call actions.copy(source, destination, "CONSUMO INSTA. AUX 1", "D")
+  Call actions.copy(source, destination, "CONSUMO INSTA. AUX 2", "E")
+  Call actions.copy(source, destination, "CONSUMO INSTA. AUX 3", "F")
+  Call actions.copy(source, destination, "CONSUMO INSTA. AUX 4", "G")
+  Call actions.copy(source, destination, "CONSUMO INSTA. AUX 5", "H")
+
   Call actions.updateChartData(destination)
 
-  Debug.Print "Datos copiados a COMPRESOR TORNILLO 1"
+  Debug.Print "Datos copiados a C.I.M.A"
 End Sub
 
 sub dataw4()
@@ -67,36 +67,20 @@ sub dataw4()
 
   ' Set the source and destination sheets
   Set source = ThisWorkbook.Sheets("SOURCE")
-  Set destination = ThisWorkbook.Sheets("COMPRESOR PISTON 1")
+  Set destination = ThisWorkbook.Sheets("C.T.M.A")
 
   ' Set antother destination sheet
-  Call actions.copy(source, destination, "TimeStr", "A", True)
-  Call actions.copy(source, destination, "AmperajeC5", "B", False)
-  Call actions.copy(source, destination, "PotenciaCP", "C", False)
-  Call actions.copy(source, destination, "PresionAspiracionCP1", "D", False)
-  Call actions.copy(source, destination, "PresionDescargaCP1", "E", False)
-  Call actions.copy(source, destination, "TemperaturaAspiracionCP1", "F", False)
-  Call actions.copy(source, destination, "TemperaturaADescargaCP1", "G", False)
+  Call actions.copy(source, destination, "FECHA", "A", True)
+  Call actions.copy(source, destination, "HORA", "B", False, True)
+  Call actions.fillData(destination, "C", "FECHA Y HORA", "=A2+B2")
+  Call actions.copy(source, destination, "CONSUMO AUX 1", "D")
+  Call actions.copy(source, destination, "CONSUMO AUX 2", "E")
+  Call actions.copy(source, destination, "CONSUMO AUX 3", "F")
+  Call actions.copy(source, destination, "CONSUMO AUX 4", "G")
+  Call actions.copy(source, destination, "CONSUMO AUX 5", "H")
   Call actions.updateChartData(destination)
 
-  Debug.Print "Datos copiados a COMPRESOR PISTON 1"
-End Sub
-
-Sub dataw5()
-  ' Set variables
-  Dim source As Worksheet, destination As Worksheet
-
-  ' Set the source and destination sheets
-  Set source = ThisWorkbook.Sheets("SOURCE")
-  Set destination = ThisWorkbook.Sheets("TEMPERATURA")
-
-  ' Call the copy function for each column
-  Call actions.copy(source, destination, "TimeStr", "A", True)
-  Call actions.copy(source, destination, "TemperaturaAceiteCT1", "B", False)
-  Call actions.copy(source, destination, "TemperaturaAguaMP", "C", False)
-  Call actions.fillData(destination, "D", "Limite de alarma de temperatura aceite", "90")
-  Call actions.fillData(destination, "E", "Limite de alarma de temperatura agua", "65")
-  Call actions.updateChartData(destination)
+  Debug.Print "Datos copiados a C.T.M.A"
 End Sub
 
 sub manageData()
@@ -113,8 +97,6 @@ sub manageData()
   Call dataw3
   Debug.Print "Llamando a dataw4"
   Call dataw4
-  Debug.Print "Llamando a dataw5"
-  Call dataw5
   
   Debug.Print "Finalizando manageData"
 

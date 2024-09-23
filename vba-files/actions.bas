@@ -1,6 +1,6 @@
 Attribute VB_Name = "actions"
 
-Public Sub copy(wsSource As Worksheet, wsDest As Worksheet, colName As String, destCol As String, isDate As Boolean)
+Public Sub copy(wsSource As Worksheet, wsDest As Worksheet, colName As String, destCol As String, Optional isDate As Boolean = False, Optional isTime As Boolean = False)
   ' Set variables
   Dim lastRow As Long
   Dim colIndex As Integer
@@ -21,7 +21,9 @@ Public Sub copy(wsSource As Worksheet, wsDest As Worksheet, colName As String, d
     ' Set dat format
     If isDate Then
       ' wsDest.Range(destCol & "1:" & destCol & lastRow).NumberFormat = "dd/mm/yyyy"
-      wsDest.Range(destCol & "1:" & destCol & lastRow).NumberFormat = "dd/mm"
+      wsDest.Range(destCol & "1:" & destCol & lastRow).NumberFormat = "dd/mm/yyyy"
+    ElseIF isTime Then
+      wsDest.Range(destCol & "1:" & destCol & lastRow).NumberFormat = "hh:mm:ss"
     End If
 
     ' Clear the clipboard
