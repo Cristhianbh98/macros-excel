@@ -83,6 +83,52 @@ sub dataw4()
   Debug.Print "Datos copiados a C.T.M.A"
 End Sub
 
+Sub dataw5()
+  ' Set variables
+  Dim source As Worksheet, destination As Worksheet
+
+  ' Set the source and destination sheets
+  Set source = ThisWorkbook.Sheets("SOURCE")
+  Set destination = ThisWorkbook.Sheets("C.I.M")
+
+  ' Call actions
+  Call actions.copy(source, destination, "FECHA", "A", True)
+  Call actions.copy(source, destination, "HORA", "B", False, True)
+  Call actions.fillData(destination, "C", "FECHA Y HORA", "=A2+B2")
+  Call actions.copy(source, destination, "CONSUMO INSTA. MP BABOR", "D")
+  Call actions.copy(source, destination, "CONSUMO INSTA. MP ESTRIBOR", "E")
+  Call actions.copy(source, destination, "CONSUMO INSTA. AUX 1", "F")
+  Call actions.copy(source, destination, "CONSUMO INSTA. AUX 2", "G")
+  Call actions.copy(source, destination, "CONSUMO INSTA. AUX 3", "H")
+  Call actions.copy(source, destination, "CONSUMO INSTA. AUX 4", "I")
+  Call actions.copy(source, destination, "CONSUMO INSTA. AUX 5", "J")
+
+  Debug.Print "Datos copiados a C.I.M"
+End Sub
+
+Sub dataw6()
+  ' Set variables
+  Dim source As Worksheet, destination As Worksheet
+
+  ' Set the source and destination sheets
+  Set source = ThisWorkbook.Sheets("SOURCE")
+  Set destination = ThisWorkbook.Sheets("C.T.M")
+
+  ' Call actions
+  Call actions.copy(source, destination, "FECHA", "A", True)
+  Call actions.copy(source, destination, "HORA", "B", False, True)
+  Call actions.fillData(destination, "C", "FECHA Y HORA", "=A2+B2")
+  Call actions.copy(source, destination, "CONSUMO MP BABOR", "D")
+  Call actions.copy(source, destination, "CONSUMO MP ESTRIBOR", "E")
+  Call actions.copy(source, destination, "CONSUMO AUX 1", "F")
+  Call actions.copy(source, destination, "CONSUMO AUX 2", "G")
+  Call actions.copy(source, destination, "CONSUMO AUX 3", "H")
+  Call actions.copy(source, destination, "CONSUMO AUX 4", "I")
+  Call actions.copy(source, destination, "CONSUMO AUX 5", "J")
+
+  Debug.Print "Datos copiados a C.T.M"
+End Sub
+
 sub manageData()
   ' Disable screen updating and automatic calculation
   Application.ScreenUpdating = False
@@ -121,6 +167,22 @@ sub savePDF()
 
   ' Set the worksheet
   Set ws = ThisWorkbook.Sheets("DASHBOARD")
+
+  ' Set the range
+  range = "A:G"
+
+  ' Call subroutines
+  Debug.Print "Llamando a savePDF"
+  Call actions.savePDF(ws, range)
+End sub
+
+sub savePDF2()
+  ' Set variables
+  Dim ws As Worksheet
+  Dim range As String
+
+  ' Set the worksheet
+  Set ws = ThisWorkbook.Sheets("DASHBOARD 2")
 
   ' Set the range
   range = "A:G"
