@@ -5,16 +5,17 @@ sub dataw1()
   Dim source As Worksheet, destination As Worksheet
 
   ' Set the source and destination sheets
-  Set source = ThisWorkbook.Sheets("SOURCE")
+  Set source = ThisWorkbook.Sheets("SOURCE 2")
   Set destination = ThisWorkbook.Sheets("C.I M.P")
 
   ' Call the copy function for each column
-  Call actions.copy(source, destination, "FECHA", "A", True)
-  Call actions.copy(source, destination, "HORA", "B")
-  Call actions.fillData(destination, "C", "FECHA Y HORA", "=A2+B2")
-  Call actions.copy(source, destination, "CONSUMO INSTA. MP BABOR", "D")
-  Call actions.copy(source, destination, "CONSUMO INSTA. MP ESTRIBOR", "E")
+  Call actions.copy(source, destination, "TimeStr", "A", True)
+  Call actions.copy(source, destination, "Consum_Ins_MP_Babor", "B")
+  Call actions.copy(source, destination, "Consum_Ins_MP_Es", "C")
   Call actions.updateChartData(destination)
+  Call actions.changeColumnHeader(destination, "A", "FECHA")
+  Call actions.changeColumnHeader(destination, "B", "CONSUMO INSTA. MP BABOR")
+  Call actions.changeColumnHeader(destination, "C", "CONSUMO INSTA. MP ESTRIBOR")
 
   Debug.Print "Datos copiados a C.I M.P"
 End Sub
@@ -24,16 +25,17 @@ sub dataw2()
   Dim source As Worksheet, destination As Worksheet
 
   ' Set the source and destination sheets
-  Set source = ThisWorkbook.Sheets("SOURCE")
+  Set source = ThisWorkbook.Sheets("SOURCE 2")
   Set destination = ThisWorkbook.Sheets("C.T.M.P")
 
   ' Set antother destination sheet
-  Call actions.copy(source, destination, "FECHA", "A", True)
-  Call actions.copy(source, destination, "HORA", "B", False, True)
-  Call actions.fillData(destination, "C", "FECHA Y HORA", "=A2+B2")
-  Call actions.copy(source, destination, "CONSUMO MP BABOR", "D")
-  Call actions.copy(source, destination, "CONSUMO MP ESTRIBOR", "E")
+  Call actions.copy(source, destination, "TimeStr", "A", True)
+  Call actions.copy(source, destination, "Consum_Ins_MP_Babor", "B")
+  Call actions.copy(source, destination, "Consum_Ins_MP_Es", "C")
   Call actions.updateChartData(destination)
+  Call actions.changeColumnHeader(destination, "A", "FECHA")
+  Call actions.changeColumnHeader(destination, "B", "CONSUMO INSTA. MP BABOR")
+  Call actions.changeColumnHeader(destination, "C", "CONSUMO INSTA. MP ESTRIBOR")
 
   Debug.Print "Datos copiados a C.T.M.P"
 End Sub

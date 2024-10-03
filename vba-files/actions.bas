@@ -126,6 +126,10 @@ Public Sub savePDF(ws As Worksheet, range As String)
                         OpenAfterPublish:=True
 End Sub
 
+Public Sub changeColumnHeader(ws As Worksheet, col As String, newHeader As String)
+  ws.Range(col & "1").Value = newHeadeR
+End Sub
+
 ' Functions
 Function columnNumberToLetter(colNum As Long) As String
   Dim dividend As Long
